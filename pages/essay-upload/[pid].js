@@ -11,33 +11,61 @@ const Host = () => {
     const router = useRouter();
     const pid  = router.query.pid;
     const [isLoading, setLoading] = useState(false);
+    const [cards, setCards]=useState([]);
     const room = () => {
         console.log("woooo")
-        roomService.CreateRoom({username: localStorage.getItem("username")}).then((room) => {
+        roomService.CreateRoom({username: localStorage.getItem("username")}).then((room, k) => {
             console.log(room.data)
             alert("Room created! Your code is " + room.data.code)
           }).catch(() => window.location.reload())
     }
     const [students, setStudents] = useState([])
+    const getCards= async (pid) => {
+        const data  = await roomService.roomStudents(pid);
+        console.log(data)
+        setCards(data.map((student) => {
+            return (
+                <div className="mt-2">
+                <Card title={student.name} titleAlign="text-center">
 
+                </Card>
+                </div>
+            )}));
+      };
     useEffect(() => {
         setLoading(true)
         console.log("slay")
         if(pid!=undefined){
         console.log(pid)
      
-        const st= async () => {await roomService.roomStudents(pid).then((students) => {
-        console.log(students)
+        // const st= async () => {await roomService.roomStudents(pid).then((students) => {
+        // console.log(students)
        
-        // .then((students) => {
-            console.log(students.data)
-            setStudents(students.data)
-            setEssays(students.essays)
-            setLoading(false)
-          }).catch(() => setStudents([]));}
+        // // .then((students) => {
+        //     console.log(students.data)
+        //     setStudents(students.data)
+        //     setEssays(students.essays)
+        //     setLoading(false)
+        //   }).catch(() => setStudents([]));
+        //console.log(roomService.roomStudents(pid))
+        try{
+        setCards(roomService.roomStudents(pid).then((res) => (res.map((student) => {
+            return (
+                <div className="mt-2">
+                <Card title={student.name} titleAlign="text-center">
+
+                </Card>
+                </div>
+            )
+        }))))}
+        catch{
+
+        }
+        //getCards(pid);
+    }
         
           
-}}, [pid])
+}, [])
     //.then((students) => {
     //         console.log(students)
     //         console.log(students.data)
@@ -47,10 +75,10 @@ const Host = () => {
     //           console.log(e);
     //           setStudents([])})
     // }, [])
-    if (!students||students.length==0){ 
-        console.log(students);
-        return <p>No profile data</p>}
-    if (isLoading) return <p>Loading...</p>
+    // if (!students||students.length==0){ 
+    //     console.log(students);
+    //     return <p>No profile data</p>}
+     if (isLoading) return <p>Loading...</p>
     
     return (
         <div>
@@ -59,7 +87,7 @@ const Host = () => {
             
             {
             <div className="grid grid-cols-2 gap-4">
-            {students.map((student) => {
+            {/* {roomService.roomStudents(pid)?.map((student) => {
                 return (
                     <div className="mt-2">
                     <Card title={student.name} titleAlign="text-center">
@@ -67,7 +95,8 @@ const Host = () => {
                     </Card>
                     </div>
                 )
-            })}
+            })} */}
+            {cards}
             </div>
             }
             

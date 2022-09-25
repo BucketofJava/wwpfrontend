@@ -11,7 +11,7 @@ const SignUp = (props) => {
                 <div className="grid grid-cols-3 gap-4">
                     <div></div>
                     <Card title="Sign Up" titleAlign="text-center">
-                        <div className="text-center text-black">Take control of your health!</div>
+                        <div className="text-center text-black">Sign up!</div>
                         <div className="mt-10">
                             <SignUpForm></SignUpForm>
                         </div>

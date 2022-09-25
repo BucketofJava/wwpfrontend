@@ -25,15 +25,11 @@ function RoomStudents(d){
 }
 function roomStudents(d){
     axios.get(`https://springbootthing.grandwarlock.repl.co/rooms/`+ d+ `?code=1`).then((room)=>{
-        console.log(room.data.studentids)
-        return room.data.studentids.forEach(id => {
-            console.log(id)
-            const a= axios.get(`https://springbootthing.grandwarlock.repl.co/students/`+id).then((student)=>{
-             console.log(student);   return student}).catch((e)=>{})
-            console.log(a)
-            return a;
-        });
-    }).catch((e)=>{console.log(e); return {}})
+
+        // return room.data.studentids.map(id =>  axios.get(`https://springbootthing.grandwarlock.repl.co/students/`+id).then((student)=>{
+        //         console.log(student);   return student}).catch((e)=>{console.log(e);return {}}));
+        return axios.get(`https://springbootthing.grandwarlock.repl.co/students/`).then((res)=>res.data.filter((student)=> room.data.studentids.includes(student.id)))
+    }).catch((e)=>{console.log(e); return {"balls":1}})
 }
 function LogInUser(formData){
     const payload = {
