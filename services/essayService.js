@@ -5,7 +5,7 @@ function CreateEssay(formData){
         comments: []
     }
     console.log(localStorage.getItem("studentid"))
-    return axios.post(`https://springbootthing.grandwarlock.repl.co/essays?studentid=`+localStorage.getItem("studentid"), payload).then((user)=>user).catch((e)=> e)
+    return axios.post(`https://XReview-Backend.grandwarlock.repl.co/essays?studentid=`+localStorage.getItem("studentid"), payload).then((user)=>user).catch((e)=> e)
 }
 
 function GetEssay(formData){
@@ -13,7 +13,7 @@ function GetEssay(formData){
         username: formData.username,
         password: formData.password,
     }
-    return axios.post(`https://springbootthing.grandwarlock.repl.co/users`, payload).then((token)=>token).catch((e)=> e)
+    return axios.post(`https://XReview-Backend.grandwarlock.repl.co/users`, payload).then((token)=>token).catch((e)=> e)
 }
 
 

@@ -23,10 +23,10 @@ const Host = () => {
     const getCards= async (pid) => {
         const data  = await roomService.roomStudents(pid);
         console.log(data)
-        setCards(data.map((student) => {
+        setCards(data.map((student, key) => {
             return (
-                <div className="mt-2">
-                <Card title={student.name} titleAlign="text-center">
+                <div key={key} className="mt-2">
+                <Card key={key} title={student.name} titleAlign="text-center">
 
                 </Card>
                 </div>
@@ -49,10 +49,10 @@ const Host = () => {
         //   }).catch(() => setStudents([]));
         //console.log(roomService.roomStudents(pid))
         try{
-        setCards(roomService.roomStudents(pid).then((res) => (res.map((student) => {
+        setCards(roomService.roomStudents(pid).then((res) => (res.map((student, key) => {
             return (
-                <div className="mt-2">
-                <Card title={student.name} titleAlign="text-center">
+                <div key={key} className="mt-2">
+                <Card key={key} title={student.name} titleAlign="text-center">
 
                 </Card>
                 </div>

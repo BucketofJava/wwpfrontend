@@ -5,7 +5,7 @@ function CreateUser(formData){
         password: formData.password,
         realname: formData.name
     }
-    return axios.post(`https://springbootthing.grandwarlock.repl.co/users`, payload).then((user)=>user).catch((e)=> e)
+    return axios.post(`https://XReview-Backend.grandwarlock.repl.co/users`, payload).then((user)=>user).catch((e)=> e)
 }
 
 function LogInUser(formData){
@@ -14,7 +14,7 @@ function LogInUser(formData){
         password: formData.password,
         realname: ""
     }
-    return axios.post(`https://springbootthing.grandwarlock.repl.co/users/login`, payload).then((user)=>user).catch((e)=> e)
+    return axios.post(`https://XReview-Backend.grandwarlock.repl.co/users/login`, payload).then((user)=>user).catch((e)=> e)
 }
 
 

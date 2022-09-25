@@ -8,7 +8,7 @@ function joinRoom(formData){
         essayid: formData.essayid
     }
     console.log(formData.code)
-    return axios.post(`https://springbootthing.grandwarlock.repl.co/students`, payload).then((token)=>token).catch((e)=> e)
+    return axios.post(`https://XReview-Backend.grandwarlock.repl.co/students`, payload).then((token)=>token).catch((e)=> e)
 }
 
 
